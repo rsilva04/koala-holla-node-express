@@ -5,22 +5,31 @@ function getKoalas() {
   // axios call to server to get koalas
   axios.get('/koalas/koalasList').then((response) => {
     koalaList = response.data;
+    console.log('KoalaList Get', koalaList)
     viewKoalas.innerHTML = '';
     for (let i in koalaList) {
-      viewKoalas.innerHTML += `
+      if (koalaList[i].readyToTransfer === false || koalaList[i].readyToTransfer === 'false') {
+        viewKoalas.innerHTML += `
+        <tr>
+      <td>${koalaList[i].koalaName}</td>
+      <td>${koalaList[i].sex}</td>
+      <td>${koalaList[i].age}</td>
+      <td><button onclick="setTransfer(${i})">No</button></td>  
+      <td>${koalaList[i].notes}</td>
+      </tr>  
+      `
+      }
+      else if(koalaList[i].readyToTransfer || koalaList[i].readyToTransfer === 'true') {
+        viewKoalas.innerHTML += `
       <tr>
       <td>${koalaList[i].koalaName}</td>
       <td>${koalaList[i].sex}</td>
-      <td>${koalaList[i].age}</td>`
-      if(!koalaList[i].readyToTransfer) {
-        viewKoalas.innerHTML += `
-      <td><button onclick="setTransfer()">${koalaList[i].readyToTransfer}</button></td>`
-      }
-      else koalaList[i].readyToTransfer += `<td>${koalaList[i].readyToTransfer}</td>`;
-      viewKoalas.innerHTML += `
+      <td>${koalaList[i].age}</td>
+      <td>Yes</td>
       <td>${koalaList[i].notes}</td>
-      </tr>
-      `;
+      `
+      }
+
     }
   }).catch((error) => {
     console.log(error);
@@ -53,6 +62,7 @@ function addNewKoala(event) {
   let sex = document.querySelector('#sexIn').value
   let readyToTransfer = document.querySelector('#readyForTransferIn').value
   let notes = document.querySelector('#notesIn').value
+  console.log(readyToTransfer);
   let newKoalaAdded = {
     koalaName: koalaName,
     age: age,
