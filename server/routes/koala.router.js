@@ -9,6 +9,7 @@ class Koala {
         this.age = age;
         this.readyToTransfer = transfer;
         this.notes = notes;
+        this.markedForDeletion = false;
     }
     updateTransferStatus(changeTransfer) {
         this.readyToTransfer = this.changeTransfer;
@@ -52,8 +53,13 @@ koalaRouter.put('/transfer/:index', (req, res) => {
 // DELETE
 koalaRouter.delete('/koalas/:index' , (req, res) => {
     console.log('Delete request!', req.body);
-    koalaRouter.splice(index, index)
     let index = req.params.index
+    index = Number(index);
+    koalaList[index].markedForDeletion = true;
+    koalaList = koalaList.filter((obj) => !obj.markedForDeletion);
+    console.log(index);
+    // koalaList.splice(index, index)
+    
     res.sendStatus(201);
 })
 

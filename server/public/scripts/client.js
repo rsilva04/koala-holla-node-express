@@ -12,10 +12,11 @@ function getKoalas() {
         viewKoalas.innerHTML += `
         <tr>
       <td>${koalaList[i].koalaName}</td>
-      <td>${koalaList[i].sex}</td>
       <td>${koalaList[i].age}</td>
+      <td>${koalaList[i].sex}</td>
       <td><button onclick="setTransfer(${i})">No</button></td>  
       <td>${koalaList[i].notes}</td>
+      <td><button onclick="deleteKoala(${i})">X</td>
       </tr>  
       `
       }
@@ -23,10 +24,11 @@ function getKoalas() {
         viewKoalas.innerHTML += `
       <tr>
       <td>${koalaList[i].koalaName}</td>
-      <td>${koalaList[i].sex}</td>
       <td>${koalaList[i].age}</td>
+      <td>${koalaList[i].sex}</td>
       <td>Yes</td>
       <td>${koalaList[i].notes}</td>
+      <td><button onclick="deleteKoala(${i})">X</td>
       `
       }
 
@@ -36,7 +38,13 @@ function getKoalas() {
     alert('Something went wrong.');
   });
 }// end getKoalas
-// /koalas/transfer:index
+
+function deleteKoala(index) {
+  axios.delete(`/koalas/koalas/${index}`).then((response) => {
+    console.log(response);
+    getKoalas();
+  })
+}
 
 
 function setTransfer(index) {
