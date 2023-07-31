@@ -1,18 +1,47 @@
 const express = require('express');
 const koalaRouter = express.Router();
+let koalaList = [];
 
+class Koala {
+    constructor(koalaName, sex, age, transfer, notes) {
+        this.koalaName = koalaName;
+        this.sex = sex;
+        this.age = age;
+        this.readyToTransfer = transfer;
+        this.notes = notes;
+    }
+}
 // DB CONNECTION
 
 
 // GET
-
+koalaRouter.get('/koalasList', (req, res) => {
+    console.log('Get koalas request made');
+    res.send(koalaList);
+});
 
 // POST
-
+koalaRouter.post('/koalas', (req, res) => {
+    console.log('Post request made');
+    res.send(koalaList);
+});
 
 // PUT
 
 
 // DELETE
+koalaRouter.delete('/koalas/:index' , (req, res) => {
+    console.log('Delete request!', req.body);
+    koalaRouter.splice(index, index)
+    let index = req.params.index
+    res.sendStatus(201);
+})
+
+koalaList.push(new Koala('Scotty', 'M', 4, true, 'Born in Guatemala'));
+koalaList.push(new Koala('Jean', 'F', 5, true, 'Allergic to lots of lava'));
+koalaList.push(new Koala('Ororo', 'F', 7, false, 'Loves listening tp Paula (Adul)'));
+koalaList.push(new Koala('Logan', 'M', 15, false, 'Loves the sauna'));
+koalaList.push(new Koala('Charlie', 'M', 9, true, 'Favorite band is Nirvana'));
+koalaList.push(new Koala('Betsy', 'M', 4, true, 'Born in Guatemala'));
 
 module.exports = koalaRouter;
