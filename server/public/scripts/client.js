@@ -11,8 +11,13 @@ function getKoalas() {
       <tr>
       <td>${koalaList[i].koalaName}</td>
       <td>${koalaList[i].sex}</td>
-      <td>${koalaList[i].age}</td>
-      <td>${koalaList[i].readyToTransfer}</td>
+      <td>${koalaList[i].age}</td>`
+      if(!koalaList[i].readyToTransfer) {
+        viewKoalas.innerHTML += `
+      <td><button onclick="setTransfer()">${koalaList[i].readyToTransfer}</button></td>`
+      }
+      else koalaList[i].readyToTransfer += `<td>${koalaList[i].readyToTransfer}</td>`;
+      viewKoalas.innerHTML += `
       <td>${koalaList[i].notes}</td>
       </tr>
       `;
