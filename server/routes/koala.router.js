@@ -43,5 +43,5 @@ koalaList.push(new Koala('Ororo', 'F', 7, false, 'Loves listening tp Paula (Adul
 koalaList.push(new Koala('Logan', 'M', 15, false, 'Loves the sauna'));
 koalaList.push(new Koala('Charlie', 'M', 9, true, 'Favorite band is Nirvana'));
 koalaList.push(new Koala('Betsy', 'M', 4, true, 'Born in Guatemala'));
-
+console.log(koalaList);
 module.exports = koalaRouter;
