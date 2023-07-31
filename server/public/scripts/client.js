@@ -5,6 +5,7 @@ function getKoalas() {
   // axios call to server to get koalas
   axios.get('/koalas/koalasList').then((response) => {
     koalaList = response.data;
+    viewKoalas.innerHTML = '';
     for (let i in koalaList) {
       viewKoalas.innerHTML += `
       <tr>

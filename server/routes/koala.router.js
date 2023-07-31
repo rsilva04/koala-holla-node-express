@@ -14,6 +14,8 @@ class Koala {
         this.readyToTransfer = this.changeTransfer;
     }
 }
+
+
 // DB CONNECTION
 
 
