@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Koalla Holla</title>
-    <link rel="stylesheet" href="views/styles.css">
+    <link rel="stylesheet" href="./styles/style.css">
   </head>
   <body>
     <header>
@@ -14,12 +14,17 @@
     </header>
     <section id="addKoala">
       <h2>Add Koala</h2>
+      <form onsubmit="addNewKoala(event)">
       <input type="text" id="nameIn" value="" placeholder="Name">
       <input type="text" id="ageIn" value="" placeholder="Age">
       <input type="text" id="sexIn" value="" placeholder="Sex">
-      <input type="text" id="readyForTransferIn" value="" placeholder="Transfer">
+      <select id="readyForTransferIn" value="">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+          </select>
       <input type="text" id="notesIn" value="" placeholder="Notes">
-      <button type="button" id="addButton">Add Koala</button>
+      <input type="submit" value="Add Koala" id="addButton"/>
+    </form>
     </section>
     <section>
       <h2>All Koalas</h2>
