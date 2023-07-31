@@ -36,6 +36,16 @@ function getKoalas() {
     alert('Something went wrong.');
   });
 }// end getKoalas
+// /koalas/transfer:index
+
+
+function setTransfer(index) {
+  axios.put(`/koalas/transfer/${index}`).then((response) => {
+    console.log(response);
+    getKoalas();
+  });
+  }
+
 
 function saveKoala() {
   console.log('in saveKoala');
