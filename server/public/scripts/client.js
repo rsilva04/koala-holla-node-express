@@ -40,11 +40,22 @@ function getKoalas() {
 }// end getKoalas
 
 function deleteKoala(index) {
-  axios.delete(`/koalas/koalas/${index}`).then((response) => {
-    console.log(response);
+  swal({
+    title: `Delete ${koalaList[index].koalaName}`,
+    text: "Are you sure you want to delete this record?",
+    icon: "info",
+    button: "Yes, I'm sure"
+  }).then((value) => {
+    console.log(value);
+    if (value) {
+      axios.delete(`/koalas/koalas/${index}`).then((response) => {
+        console.log('Delete request', response);
+    })};
     getKoalas();
-  })
+  });
+  
 }
+
 
 
 function setTransfer(index) {
