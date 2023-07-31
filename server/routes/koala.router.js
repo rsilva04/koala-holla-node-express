@@ -10,6 +10,9 @@ class Koala {
         this.readyToTransfer = transfer;
         this.notes = notes;
     }
+    updateTransferStatus(changeTransfer){
+        this.readyToTransfer = this.changeTransfer;
+    }
 }
 // DB CONNECTION
 
