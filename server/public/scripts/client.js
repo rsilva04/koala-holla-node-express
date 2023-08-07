@@ -5,18 +5,19 @@ function getKoalas() {
   // axios call to server to get koalas
   axios.get('/koalas/koalasList').then((response) => {
     koalaList = response.data;
-    console.log('KoalaList Get', koalaList)
+    console.log('KoalaList Get', koalaList);
     viewKoalas.innerHTML = '';
     for (let i in koalaList) {
-      if (koalaList[i].readyToTransfer === false || koalaList[i].readyToTransfer === 'false') {
+      if (koalaList[i].readyToTransfer === false || koalaList[i].readyToTransfer === 'false' ||
+      koalaList[i].readyToTransfer === null) {
         viewKoalas.innerHTML += `
         <tr>
       <td>${koalaList[i].koalaName}</td>
       <td>${koalaList[i].age}</td>
       <td>${koalaList[i].sex}</td>
-      <td><button onclick="setTransfer(${i})">No</button></td>  
+      <td><button onclick="setTransfer(${koalaList[i].id})">No</button></td>  
       <td>${koalaList[i].notes}</td>
-      <td><button onclick="deleteKoala(${i})">X</td>
+      <td><button onclick="deleteKoala(${koalaList[i].id})">X</td>
       </tr>  
       `
       }
@@ -28,7 +29,7 @@ function getKoalas() {
       <td>${koalaList[i].sex}</td>
       <td>Yes</td>
       <td>${koalaList[i].notes}</td>
-      <td><button onclick="deleteKoala(${i})">X</td>
+      <td><button onclick="deleteKoala(${koalaList[i].id})">X</td>
       `
       }
 
@@ -39,16 +40,16 @@ function getKoalas() {
   });
 }// end getKoalas
 
-function deleteKoala(index) {
+function deleteKoala(id) {
   swal({
-    title: `Delete ${koalaList[index].koalaName}`,
+    title: `Delete ${koalaList[id].koalaName}`,
     text: "Are you sure you want to delete this record?",
     icon: "info",
     button: "Yes, I'm sure"
   }).then((value) => {
     console.log(value);
     if (value) {
-      axios.delete(`/koalas/koalas/${index}`).then((response) => {
+      axios.delete(`/koalas/koalas/${id}`).then((response) => {
         console.log('Delete request', response);
     })};
     getKoalas();
@@ -58,8 +59,8 @@ function deleteKoala(index) {
 
 
 
-function setTransfer(index) {
-  axios.put(`/koalas/transfer/${index}`).then((response) => {
+function setTransfer(id) {
+  axios.put(`/koalas/transfer/${id}`).then((response) => {
     console.log(response);
     getKoalas();
   });
