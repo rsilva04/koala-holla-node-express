@@ -27,7 +27,7 @@ function getKoalas() {
       <td>${koalaList[i].koalaName}</td>
       <td>${koalaList[i].age}</td>
       <td>${koalaList[i].sex}</td>
-      <td>Yes</td>
+      <td><button onclick="setTransfer(${koalaList[i].id})">Yes</button></td>
       <td>${koalaList[i].notes}</td>
       <td><button onclick="deleteKoala(${koalaList[i].id})">X</td>
       `
